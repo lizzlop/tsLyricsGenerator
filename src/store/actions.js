@@ -4,18 +4,11 @@ import {
   serviceGetSongs,
 } from "../services/services";
 
-//Action -> payload, el valor que quiero que actualice
 export const action = (type, payload) => {
   return { type, payload };
 };
 
-//dispatcher
-export const setUpdateCounter = (numberToAdd) => (dispatch, getState) => {
-  const actualStateCounter = getState().reducer.counter;
-  dispatch(action("add", actualStateCounter + numberToAdd));
-};
-
-export const resetCounter = () => (dispatch) => {
+export const reset = () => (dispatch) => {
   dispatch(action("reset", {}));
 };
 
@@ -42,7 +35,6 @@ export const getSongs = () => (dispatch) => {
 };
 
 export const getLyrics = (songID) => (dispatch) => {
-  //intentar try catch
   const urlSong = `/${songID}`;
   serviceGetLyrics(songID)
     .then((responseLyrics) => {

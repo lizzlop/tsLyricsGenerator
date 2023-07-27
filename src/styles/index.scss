@@ -1,35 +1,50 @@
 @import "./variables.scss";
 
-@mixin lyricsStyle {
-  color: $lyrics-color;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 @mixin buttonStyle {
   width: 200px;
   height: 40px;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
   background-color: $color3;
   color: $color5;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 #root {
+  height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 100%;
   margin: 0 auto;
+  padding: 0;
   text-align: center;
-  align-items: flex-start;
   background-color: $color5;
   min-height: 100vh;
-  .read-the-docs {
-    @include lyricsStyle();
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: $color4;
+  height: 8em;
+  width: auto;
+  justify-content: space-between;
+  padding-right: 3em;
+  padding-left: 3em;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 1em;
 }
 
 .h1 {
   color: $color3;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-left: 1em;
+  font-size: 2.5em;
 }
 
 .card {
@@ -44,24 +59,68 @@
 }
 
 .button:disabled {
-  @include buttonStyle();
   background-color: #d8d8d8;
-  color: $lyrics-color;
+  color: #888;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  background-color: $color4;
-  height: 10em;
-  width: auto;
-  justify-content: space-between;
-  padding-right: 3em;
+.button:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid $color4;
+  -webkit-transition: 0.3s;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input:focus {
+  border: 3px solid $color2;
+}
+
+.error {
+  font-size: x-small;
+  color: $color2;
+  margin: 0;
+}
+
+.lyrics {
+  color: $color3;
+  padding-bottom: 2.5rem;
+}
+
+.footer {
+  background-color: $color2;
+  height: 4em;
+  padding: 1em;
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
+  color: $color5;
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 10em;
+  }
   .card {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .header-buttons {
+    display: grid;
+    gap: 1em;
+  }
+}
+
+@media (max-width: 576px) {
+  .header {
+    display: grid;
+    height: 18em;
+    justify-content: space-evenly;
   }
 }

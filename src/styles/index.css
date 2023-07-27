@@ -1,20 +1,35 @@
 #root {
+  height: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 100%;
   margin: 0 auto;
+  padding: 0;
   text-align: center;
-  align-items: flex-start;
   background-color: #eee6ef;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-#root .read-the-docs {
-  color: #888;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #bcb7d9;
+  height: 8em;
+  width: auto;
+  justify-content: space-between;
+  padding-right: 3em;
+  padding-left: 3em;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 1em;
 }
 
 .h1 {
   color: #6f6c83;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  margin-left: 1em;
+  font-size: 2.5em;
 }
 
 .card {
@@ -28,35 +43,76 @@
   width: 200px;
   height: 40px;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  border: 1px solid transparent;
   background-color: #6f6c83;
   color: #eee6ef;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .button:disabled {
-  width: 200px;
-  height: 40px;
-  border-radius: 8px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  background-color: #6f6c83;
-  color: #eee6ef;
   background-color: #d8d8d8;
   color: #888;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  background-color: #bcb7d9;
-  height: 10em;
-  width: auto;
-  justify-content: space-between;
-  padding-right: 3em;
+.button:hover {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #bcb7d9;
+  transition: 0.5s;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input:focus {
+  border: 3px solid #242939;
+}
+
+.error {
+  font-size: x-small;
+  color: #242939;
+  margin: 0;
+}
+
+.lyrics {
+  color: #6f6c83;
+  padding-bottom: 2.5rem;
+}
+
+.footer {
+  background-color: #242939;
+  height: 4em;
+  padding: 1em;
+  text-align: left;
+  font-family: "Courier New", Courier, monospace;
+  color: #eee6ef;
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 10em;
+  }
   .card {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .header-buttons {
+    display: grid;
+    gap: 1em;
+  }
+}
+@media (max-width: 576px) {
+  .header {
+    display: grid;
+    height: 18em;
+    justify-content: space-evenly;
   }
 }/*# sourceMappingURL=index.css.map */

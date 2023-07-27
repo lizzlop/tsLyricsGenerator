@@ -21,16 +21,3 @@ export const albumDictionary = {
   9: evermore,
   10: midnights,
 };
-
-// export const albumDictionary = {
-//   1: "./assets/images/1989.svg",
-//   2: "./assets/images/taylorswift.svg",
-//   3: "./assets/images/fearless.svg",
-//   4: "./assets/images/speak-now.svg",
-//   5: "./assets/images/red.svg",
-//   6: "./assets/images/reputation.svg",
-//   7: "./assets/images/lover.svg",
-//   8: "./assets/images/folklore.svg",
-//   9: "./assets/images/evermore.svg",
-//   10: "./assets/images/midnights.svg",
-// };

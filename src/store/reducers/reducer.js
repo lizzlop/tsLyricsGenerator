@@ -1,15 +1,7 @@
-//Reducer
-
-const initialState = { counter: 0, albums: [], songCounter: 0, songData: "" };
+const initialState = { albums: [], songCounter: 0, songData: "" };
 
 const updateObject = (oldObject, updatedProperties) => {
   return { ...oldObject, ...updatedProperties };
-};
-
-const reducerAdd = (state, action) => {
-  return updateObject(state, {
-    counter: action.payload,
-  });
 };
 
 const reducerReset = () => {
@@ -36,8 +28,6 @@ const reducerSaveSongLyric = (state, action) => {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case "add":
-      return reducerAdd(state, action);
     case "reset":
       return reducerReset();
     case "save":
