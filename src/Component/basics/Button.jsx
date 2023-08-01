@@ -1,15 +1,22 @@
 import React from "react";
 import "../../styles/index.css";
 
-export const Button = ({ onButtonClick, style, isActive = true, children }) => {
-  const styleButton = isActive ? style : {};
+export const Button = ({
+  onButtonClick,
+  style,
+  disabled = true,
+  type = "button",
+  children,
+}) => {
+  const styleButton = disabled ? style : {};
 
   return (
     <div>
       <button
         className="button"
         style={styleButton}
-        disabled={!isActive}
+        disabled={!disabled}
+        type={type}
         onClick={onButtonClick}>
         {children}
       </button>

@@ -1,4 +1,4 @@
-const initialState = { albums: [], songCounter: 0, songData: "" };
+const initialState = { albums: [], songCounter: 0, songData: "", errors: null };
 
 const updateObject = (oldObject, updatedProperties) => {
   return { ...oldObject, ...updatedProperties };
@@ -26,6 +26,12 @@ const reducerSaveSongLyric = (state, action) => {
   });
 };
 
+const reducerErrors = (state, action) => {
+  return updateObject(state, {
+    errors: action.payload,
+  });
+};
+
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case "reset":
@@ -36,6 +42,8 @@ const reducer = (state = initialState, action = {}) => {
       return reducerSaveSong(state, action);
     case "saveSongLyric":
       return reducerSaveSongLyric(state, action);
+    case "errors":
+      return reducerErrors(state, action);
     default:
       return state;
   }

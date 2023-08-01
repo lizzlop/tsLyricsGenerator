@@ -18,8 +18,8 @@ export const getAlbums = () => (dispatch) => {
       const infoAlbums = response.data;
       dispatch(action("save", infoAlbums));
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      getCustomError(dispatch, error);
     });
 };
 
@@ -29,29 +29,41 @@ export const getSongs = () => (dispatch) => {
       const counterSongs = response.data.length;
       dispatch(action("saveSong", counterSongs));
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      getCustomError(dispatch, error);
     });
 };
 
-export const getLyrics = (songID) => (dispatch) => {
+export const getSongData = (songID) => async (dispatch) => {
   const urlSong = `/${songID}`;
-  serviceGetLyrics(songID)
-    .then((responseLyrics) => {
-      serviceGetSongs(urlSong)
-        .then((responseSong) => {
-          const songData = {
-            lyrics: responseLyrics.data.lyrics,
-            title: responseSong.data.song_title,
-            album_id: responseSong.data.album_id,
-          };
-          dispatch(action("saveSongLyric", songData));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  try {
+    const responseLyrics = serviceGetLyrics(songID);
+    const responseSong = serviceGetSongs(urlSong);
+    const allResponses = await Promise.all([responseLyrics, responseSong]);
+
+    const songData = {
+      lyrics: allResponses[0].data.lyrics,
+      title: allResponses[1].data.song_title,
+      album_id: allResponses[1].data.album_id,
+    };
+    dispatch(action("saveSongLyric", songData));
+  } catch (error) {
+    getCustomError(dispatch, error);
+  }
+};
+
+export const getCustomError = (dispatch, error) => {
+  let customError;
+  if (error.response) {
+    customError = {
+      message: error.response.data.error,
+      code: error.code,
+    };
+  } else {
+    customError = {
+      message: error.message,
+      code: error.code,
+    };
+  }
+  dispatch(action("errors", customError));
 };
