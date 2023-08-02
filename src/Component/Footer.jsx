@@ -1,5 +1,3 @@
-import githubLogo from "../assets/images/githubLogo.svg";
-
 export const Footer = () => {
   return (
     <>

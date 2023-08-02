@@ -1,2 +1,0 @@
-- [ ]  separar todo en funciones
-- [ ]  hacer readMe	
